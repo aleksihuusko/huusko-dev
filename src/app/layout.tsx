@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 
 import "@/styles/globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -37,6 +38,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Footer />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
