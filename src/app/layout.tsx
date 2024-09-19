@@ -11,9 +11,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Aleksi Huusko | Software Engineer | Full Stack Developer",
+  title: "Aleksi Huusko | Software Engineer and Full-Stack Developer",
   description:
-    "MSc in Computer Science | Software Engineer | Full Stack Developer",
+    "Full-stack developer and Software Engineer (MSc Computer Science) crafting fast, scalable web solutions. Let’s build something amazing together!",
 };
 
 export default function RootLayout({
