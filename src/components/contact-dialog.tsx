@@ -78,6 +78,11 @@ export default function ContactDialog({
       });
 
       if (!response.ok) {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
         throw new Error("Failed to send message");
       }
 
