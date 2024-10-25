@@ -1,26 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ContactDialog from "@/components/contact-dialog";
 
 export default function Hero() {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start((i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { delay: i * 0.1 },
+    }));
+  }, [controls]);
+
   return (
     <section id="hero" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto px-[5%]">
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={controls}>
             <motion.div
+              custom={1}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              animate={controls}
             >
               <Badge
                 variant="secondary"
@@ -32,17 +40,17 @@ export default function Hero() {
             </motion.div>
             <motion.h1
               className="scroll-m-20 text-balance text-4xl tracking-tight lg:text-5xl"
+              custom={2}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              animate={controls}
             >
               A creative web developer and designer
             </motion.h1>
             <motion.p
               className="prose prose-stone text-balance leading-7 dark:prose-invert [&:not(:first-child)]:mt-6"
+              custom={3}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              animate={controls}
             >
               Developer and UX/UI designer from Helsinki, Finland. Specializing
               in crafting dynamic, innovative digital products and evolving user
@@ -50,9 +58,9 @@ export default function Hero() {
             </motion.p>
             <motion.div
               className="mt-10 flex gap-x-4 md:mt-8"
+              custom={4}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              animate={controls}
             >
               <ContactDialog>
                 <Button size="lg" variant="default">
@@ -65,14 +73,14 @@ export default function Hero() {
           {/* Image */}
           <motion.div
             className="relative overflow-hidden rounded-lg"
+            custom={5}
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            animate={controls}
           >
             <motion.div
+              custom={6}
               initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              animate={controls}
             >
               <Image
                 priority
@@ -85,9 +93,9 @@ export default function Hero() {
             </motion.div>
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-background/0 via-background/5 to-background/50 dark:from-background/0 dark:via-background/20 dark:to-background/80"
+              custom={7}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5, ease: "easeInOut" }}
+              animate={controls}
             />
           </motion.div>
         </div>

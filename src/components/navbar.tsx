@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,20 +38,26 @@ const links = {
 };
 
 export default function Navbar() {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start((i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1 },
+    }));
+  }, [controls]);
+
   return (
     <nav className="sticky top-0 z-50 bg-background/50 backdrop-blur-2xl">
       <div className="container mx-auto px-[5%]">
         <motion.div
           className="flex h-12 items-center justify-between md:h-16"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={controls}
+          custom={0}
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={controls} custom={1}>
             <Link
               href="/"
               className="flex flex-col transition-colors duration-300 hover:text-muted-foreground"
@@ -65,8 +72,8 @@ export default function Navbar() {
           <motion.div
             className="hidden md:block"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            animate={controls}
+            custom={2}
           >
             <NavigationMenu>
               <NavigationMenuList>
@@ -74,8 +81,8 @@ export default function Navbar() {
                   <motion.div
                     key={label}
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.1 * (index + 3) }}
+                    animate={controls}
+                    custom={index + 3}
                   >
                     <NavigationMenuItem>
                       <Link href={href} legacyBehavior passHref>
@@ -95,8 +102,8 @@ export default function Navbar() {
           <motion.div
             className="hidden items-center gap-x-2 md:flex"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            animate={controls}
+            custom={8}
           >
             <ThemeToggle />
             <ContactDialog>
@@ -108,8 +115,8 @@ export default function Navbar() {
           <motion.div
             className="flex md:hidden"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            animate={controls}
+            custom={9}
           >
             <Sheet>
               <SheetTrigger>
