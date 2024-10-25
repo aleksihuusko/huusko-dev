@@ -34,13 +34,13 @@ This is the source code for my personal portfolio website, showcasing my skills,
 2. Install dependencies:
 
    ```
-   npm install
+   bun install
    ```
 
 3. Run the development server:
 
    ```
-   npm run dev
+   bun run dev
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
