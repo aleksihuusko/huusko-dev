@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -11,7 +11,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ContactDialog from "@/components/contact-dialog";
-import { cn } from "@/lib/utils";
 
 const questions = [
   {
@@ -42,45 +41,10 @@ const questions = [
 ];
 
 export default function Faq() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.2,
-    margin: "0px 0px -20% 0px",
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <motion.section
-      ref={sectionRef}
-      id="faq"
-      className="py-16 md:py-24 lg:py-28"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
+    <section id="faq" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto grid grid-cols-1 items-start justify-between gap-x-12 gap-y-12 px-[5%] md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-20">
-        <motion.div variants={itemVariants}>
+        <div>
           <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
             Frequently asked questions
           </h2>
@@ -99,27 +63,26 @@ export default function Faq() {
               Contact
             </Button>
           </ContactDialog>
-        </motion.div>
+        </div>
 
-        <motion.div variants={containerVariants}>
+        <div>
           <Accordion type="single" collapsible>
             {questions.map((question, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <AccordionItem
-                  value={`item-${index}`}
-                  className={cn(
-                    "border-b",
-                    index === questions.length - 1 && "border-b-0",
-                  )}
-                >
-                  <AccordionTrigger>{question.question}</AccordionTrigger>
-                  <AccordionContent>{question.answer}</AccordionContent>
-                </AccordionItem>
-              </motion.div>
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className={cn(
+                  "border-b",
+                  index === questions.length - 1 && "border-b-0",
+                )}
+              >
+                <AccordionTrigger>{question.question}</AccordionTrigger>
+                <AccordionContent>{question.answer}</AccordionContent>
+              </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

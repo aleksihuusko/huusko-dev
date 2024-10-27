@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useState, useCallback } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "@/hooks/use-toast";
 import {
   Dialog,
   DialogTrigger,
@@ -24,7 +25,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 
 const contactFormSchema = z.object({
   name: z

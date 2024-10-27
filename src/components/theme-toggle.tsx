@@ -28,6 +28,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      className="bg-transparent"
     >
       <EyeOpenIcon className="!size-3.5 dark:hidden" />
       <EyeNoneIcon className="hidden !size-3.5 dark:block" />

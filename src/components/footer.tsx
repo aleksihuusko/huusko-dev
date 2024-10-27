@@ -1,20 +1,18 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-
 import {
   GitHubLogoIcon,
   InstagramLogoIcon,
   LinkedInLogoIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+import { IconProps } from "@radix-ui/react-icons/dist/types";
 import { Button } from "@/components/ui/button";
 import ContactDialog from "@/components/contact-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Clock } from "@/components/clock";
-import { IconProps } from "@radix-ui/react-icons/dist/types";
 
 const links: {
   main: Array<{ href: string; label: string }>;
@@ -71,47 +69,10 @@ const links: {
 };
 
 export default function Footer() {
-  const footerRef = useRef(null);
-  const isInView = useInView(footerRef, {
-    once: true,
-    amount: 0.2,
-    margin: "0px 0px -20% 0px",
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <motion.footer
-      ref={footerRef}
-      className="py-12 md:py-16 lg:py-20"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
+    <footer className="py-12 md:py-16 lg:py-20">
       <div className="container mx-auto px-[5%]">
-        <motion.div
-          className="mb-6 grid w-full grid-cols-1 items-center justify-between gap-6 rounded-lg border border-border bg-accent p-8 text-center shadow-sm md:mb-8 md:grid-cols-[1fr_max-content] md:gap-x-12 md:gap-y-8 md:p-12 md:text-left lg:mb-10 lg:gap-x-20"
-          variants={itemVariants}
-        >
+        <div className="mb-6 grid w-full grid-cols-1 items-center justify-between gap-6 rounded-lg border border-border bg-accent p-8 text-center shadow-sm md:mb-8 md:grid-cols-[1fr_max-content] md:gap-x-12 md:gap-y-8 md:p-12 md:text-left lg:mb-10 lg:gap-x-20">
           <div className="md:mr-12 lg:mr-0">
             <div className="w-full max-w-lg">
               <h2 className="mb-3 scroll-m-20 text-3xl tracking-tight transition-colors first:mt-0">
@@ -129,12 +90,9 @@ export default function Footer() {
               </Button>
             </ContactDialog>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 gap-x-[8vw] gap-y-12 rounded-lg border border-border p-8 md:gap-y-16 md:p-12 lg:grid-cols-[0.75fr,1fr] lg:gap-y-4"
-          variants={itemVariants}
-        >
+        <div className="grid grid-cols-1 gap-x-[8vw] gap-y-12 rounded-lg border border-border p-8 md:gap-y-16 md:p-12 lg:grid-cols-[0.75fr,1fr] lg:gap-y-4">
           <div className="flex flex-col">
             <Link
               href="#hero"
@@ -160,10 +118,9 @@ export default function Footer() {
           </div>
           <div className="grid grid-cols-1 items-start gap-y-10 sm:grid-cols-3 sm:gap-x-6 md:gap-x-8 md:gap-y-4">
             {["Navigation", "Projects", "Socials"].map((category, index) => (
-              <motion.div
+              <div
                 key={index}
                 className="flex flex-col items-start justify-start"
-                variants={itemVariants}
               >
                 <span className="mb-3 text-sm md:mb-4">{category}</span>
                 <ul className="flex flex-col items-start justify-start">
@@ -191,14 +148,12 @@ export default function Footer() {
                     ),
                   )}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
-        <motion.div
-          className="flex flex-col-reverse items-center justify-between gap-y-4 pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8"
-          variants={itemVariants}
-        >
+        </div>
+
+        <div className="flex flex-col-reverse items-center justify-between gap-y-4 pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8">
           <p className="mt-6 text-xs text-muted-foreground/60 md:mt-0">
             © {new Date().getFullYear()} Aleksi Huusko – All rights reserved
           </p>
@@ -221,8 +176,8 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </motion.div>
+        </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }

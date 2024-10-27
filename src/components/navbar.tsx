@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -38,26 +36,11 @@ const links = {
 };
 
 export default function Navbar() {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start((i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1 },
-    }));
-  }, [controls]);
-
   return (
     <nav className="sticky top-0 z-50 bg-background/50 backdrop-blur-2xl">
       <div className="container mx-auto px-[5%]">
-        <motion.div
-          className="flex h-12 items-center justify-between md:h-16"
-          initial={{ opacity: 0 }}
-          animate={controls}
-          custom={0}
-        >
-          <motion.div initial={{ opacity: 0 }} animate={controls} custom={1}>
+        <div className="flex h-12 items-center justify-between md:h-16">
+          <div>
             <Link
               href="/"
               className="flex flex-col transition-colors duration-300 hover:text-muted-foreground"
@@ -66,58 +49,36 @@ export default function Navbar() {
                 Huusko<span className="text-muted-foreground">.dev</span>
               </span>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Desktop menu */}
-          <motion.div
-            className="hidden md:block"
-            initial={{ opacity: 0 }}
-            animate={controls}
-            custom={2}
-          >
+          <div className="hidden md:block">
             <NavigationMenu>
               <NavigationMenuList>
-                {links.main.map(({ href, label }, index) => (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0 }}
-                    animate={controls}
-                    custom={index + 3}
-                  >
-                    <NavigationMenuItem>
-                      <Link href={href} legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle()}
-                        >
-                          {label}
-                        </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
-                  </motion.div>
+                {links.main.map(({ href, label }) => (
+                  <NavigationMenuItem key={label}>
+                    <Link href={href} legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {label}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="hidden items-center gap-x-2 md:flex"
-            initial={{ opacity: 0 }}
-            animate={controls}
-            custom={8}
-          >
+          <div className="hidden items-center gap-x-2 md:flex">
             <ThemeToggle />
             <ContactDialog>
               <Button variant="outline">Contact</Button>
             </ContactDialog>
-          </motion.div>
+          </div>
 
           {/* Mobile menu */}
-          <motion.div
-            className="flex md:hidden"
-            initial={{ opacity: 0 }}
-            animate={controls}
-            custom={9}
-          >
+          <div className="flex md:hidden">
             <Sheet>
               <SheetTrigger>
                 <div className="flex flex-col gap-y-1 py-4 pl-4">
@@ -161,16 +122,18 @@ export default function Navbar() {
                     </Button>
                   ))}
                 </div>
-                <SheetFooter className="mt-auto flex w-full flex-row items-center justify-between">
-                  <ContactDialog>
-                    <Button variant="outline">Contact</Button>
-                  </ContactDialog>
+                <SheetFooter className="mt-auto flex w-full flex-row items-center justify-between pb-6">
+                  <SheetClose asChild>
+                    <ContactDialog>
+                      <Button variant="outline">Contact</Button>
+                    </ContactDialog>
+                  </SheetClose>
                   <ThemeToggle />
                 </SheetFooter>
               </SheetContent>
             </Sheet>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </nav>
   );

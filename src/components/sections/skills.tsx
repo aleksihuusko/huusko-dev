@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 import {
   BiLogoAws,
   BiLogoCss3,
@@ -62,34 +61,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ContactDialog from "@/components/contact-dialog";
 
 export default function Skills() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.2,
-    margin: "0px 0px -20% 0px",
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   const SkillCard = ({
     category,
     skills,
@@ -97,56 +68,33 @@ export default function Skills() {
     category: string;
     skills: { icon: React.ReactNode; name: string }[];
   }) => {
-    const cardRef = useRef(null);
-    const isCardInView = useInView(cardRef, {
-      once: true,
-      amount: 0.5,
-    });
-
     return (
-      <motion.div
-        ref={cardRef}
-        variants={itemVariants}
-        initial="hidden"
-        animate={isCardInView ? "visible" : "hidden"}
-      >
-        <Card>
-          <CardHeader>
-            <CardTitle>{category}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="grid grid-cols-2 gap-4 py-2">
-              {skills.map((skill, skillIndex) => (
-                <li
-                  key={skillIndex}
-                  className="inline-flex items-center gap-2 self-start"
-                >
-                  {skill.icon}
-                  <span className="text-sm">{skill.name}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </motion.div>
+      <Card>
+        <CardHeader>
+          <CardTitle>{category}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="grid grid-cols-2 gap-4 py-2">
+            {skills.map((skill, skillIndex) => (
+              <li
+                key={skillIndex}
+                className="inline-flex items-center gap-2 self-start"
+              >
+                {skill.icon}
+                <span className="text-sm">{skill.name}</span>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     );
   };
 
   return (
-    <motion.section
-      ref={sectionRef}
-      id="skills"
-      className="py-16 md:py-24 lg:py-28"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
+    <section id="skills" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto px-[5%]">
         <div className="grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:gap-x-20">
-          <motion.div
-            className="static md:sticky md:top-[30%]"
-            variants={itemVariants}
-          >
+          <div className="static md:sticky md:top-[30%]">
             <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
               Skills
             </h2>
@@ -167,7 +115,7 @@ export default function Skills() {
                 Contact
               </Button>
             </ContactDialog>
-          </motion.div>
+          </div>
           <div className="grid grid-cols-1 gap-6">
             {[
               {
@@ -325,6 +273,6 @@ export default function Skills() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
