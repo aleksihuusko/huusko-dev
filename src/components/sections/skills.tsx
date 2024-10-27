@@ -72,7 +72,7 @@ export default function Skills() {
     delay: number;
   }) => {
     return (
-      <FadeIn delay={delay} direction="up">
+      <FadeIn delay={delay} direction="up" amount={0.2}>
         <Card>
           <CardHeader>
             <CardTitle>{category}</CardTitle>
@@ -275,7 +275,7 @@ export default function Skills() {
                 key={index}
                 category={category.title}
                 skills={category.skills}
-                delay={0.2 + index * 0.05} // Staggered delay for each card
+                delay={0.1 + index * 0.05}
               />
             ))}
           </div>

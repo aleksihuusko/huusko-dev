@@ -10,7 +10,8 @@ export default function About() {
       <div className="container mx-auto px-[5%]">
         <div className="grid grid-cols-1 items-center gap-y-12 md:grid-cols-2 md:gap-x-12 lg:gap-x-20">
           <FadeIn
-            delay={0.5}
+            delay={0.4}
+            amount={0.1}
             duration={1}
             className="relative order-last md:order-first"
           >
@@ -30,14 +31,14 @@ export default function About() {
           </FadeIn>
 
           <div>
-            <FadeIn delay={0.1} direction="none" className="mb-5">
+            <FadeIn delay={0} direction="none" className="mb-5">
               <h2 className="scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors">
                 About
               </h2>
             </FadeIn>
 
             <article className="prose prose-stone dark:prose-invert">
-              <FadeIn delay={0.2}>
+              <FadeIn delay={0.1}>
                 <p>
                   A detail-oriented full-stack developer with a passion for
                   blending clean, efficient code with elegant design. I create
@@ -46,7 +47,7 @@ export default function About() {
                 </p>
               </FadeIn>
 
-              <FadeIn delay={0.3}>
+              <FadeIn delay={0.2}>
                 <p>
                   Each project is an opportunity to learn, refine skills and
                   collaborate with teams that inspire growth. The ultimate goal
@@ -56,7 +57,7 @@ export default function About() {
                 </p>
               </FadeIn>
 
-              <FadeIn delay={0.4}>
+              <FadeIn delay={0.3}>
                 <p>
                   Skilled in digital marketing, aligning design and development
                   with strategies to boost engagement, conversions and brand

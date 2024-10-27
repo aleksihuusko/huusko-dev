@@ -61,7 +61,7 @@ const ExperienceItem = ({
   delay: number;
 }) => {
   return (
-    <FadeIn delay={delay} direction="up">
+    <FadeIn amount={0.1} delay={delay} direction="up">
       <div className="flex flex-col items-start">
         <Badge variant="outline" className="mb-5 text-muted-foreground">
           {item.date}

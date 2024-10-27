@@ -29,14 +29,14 @@ import { Textarea } from "@/components/ui/textarea";
 const contactFormSchema = z.object({
   name: z
     .string()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name must be at most 50 characters")
-    .regex(/^[a-zA-Z\s]+$/, "Name must contain only letters and spaces"),
+    .min(2, "Full name is required")
+    .max(50, "That is a bit too long")
+    .regex(/^[a-zA-Z\s]+$/, "Only letters and spaces"),
   email: z.string().email("Invalid email address"),
   message: z
     .string()
-    .min(10, "Message must be at least 10 characters")
-    .max(1000, "Message must be at most 1000 characters"),
+    .min(10, "Give me some more details")
+    .max(1000, "That is a bit too long"),
 });
 
 export default function ContactDialog({
@@ -46,7 +46,6 @@ export default function ContactDialog({
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  // Add this new state to control the dialog
   const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -58,7 +57,6 @@ export default function ContactDialog({
     },
   });
 
-  // Add this function to handle dialog close
   const handleDialogClose = useCallback(() => {
     setIsOpen(false);
     form.reset();
@@ -93,7 +91,6 @@ export default function ContactDialog({
         description: "I will get back to you as soon as possible.",
       });
 
-      // Close the dialog after successful submission
       handleDialogClose();
     } catch {
       setSubmitError("Failed to send message. Please try again.");

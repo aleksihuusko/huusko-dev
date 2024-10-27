@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex h-12 items-center justify-between md:h-16">
           <FadeIn direction="right" delay={0}>
             <Link
-              href="/"
+              href="#top"
               className="flex flex-col transition-colors duration-300 hover:text-muted-foreground"
             >
               <span className="md:text-lg">
@@ -56,7 +56,7 @@ export default function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 {links.main.map(({ href, label }, index) => (
-                  <FadeIn direction="none" delay={0.05 * index} key={label}>
+                  <FadeIn direction="none" delay={0.1 * index} key={label}>
                     <NavigationMenuItem key={label}>
                       <Link href={href} legacyBehavior passHref>
                         <NavigationMenuLink
@@ -74,7 +74,7 @@ export default function Navbar() {
 
           <FadeIn
             direction="left"
-            delay={0.1}
+            delay={0.25}
             className="hidden items-center gap-x-2 md:flex"
           >
             <ThemeToggle />

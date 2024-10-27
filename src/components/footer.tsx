@@ -108,11 +108,11 @@ export default function Footer() {
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="mb-6">
+        <FadeIn amount={0.2} delay={0.1} className="mb-6">
           <div className="grid grid-cols-1 gap-x-[8vw] gap-y-12 rounded-lg border border-border p-8 md:gap-y-16 md:p-12 lg:grid-cols-[0.75fr,1fr] lg:gap-y-4">
             <div className="flex flex-col">
               <Link
-                href="#hero"
+                href="#top"
                 className="!mb-3 flex flex-col transition-colors duration-300 hover:text-muted-foreground md:mb-6"
               >
                 <span className="md:text-lg">

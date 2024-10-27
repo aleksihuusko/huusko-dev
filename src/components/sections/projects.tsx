@@ -50,7 +50,8 @@ export default function Projects() {
             <FadeIn
               key={index}
               className="flex size-full flex-col items-center justify-start"
-              delay={0.2 + index * 0.1}
+              delay={0.1 + index * 0.1}
+              amount={0.1}
               direction="up"
             >
               <Link
