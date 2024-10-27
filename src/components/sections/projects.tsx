@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import FadeIn from "@/components/fade-in";
 
 const projects = [
   {
@@ -34,18 +36,22 @@ export default function Projects() {
     <section id="projects" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto px-[5%]">
         <div className="rb-12 md:mb-18 mb-12 w-full max-w-lg lg:mb-20">
-          <h2 className="mb-3 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
-            Projects
-          </h2>
-          <p className="prose prose-stone dark:prose-invert">
-            A selection of relevant projects that I&apos;ve worked on.
-          </p>
+          <FadeIn delay={0.2} direction="none">
+            <h2 className="mb-3 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
+              Projects
+            </h2>
+            <p className="prose prose-stone dark:prose-invert">
+              A selection of relevant projects that I&apos;ve worked on.
+            </p>
+          </FadeIn>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-2 lg:gap-x-12">
           {projects.map((project, index) => (
-            <div
+            <FadeIn
               key={index}
               className="flex size-full flex-col items-center justify-start"
+              delay={0.2 + index * 0.1}
+              direction="up"
             >
               <Link
                 href={project.url}
@@ -56,9 +62,11 @@ export default function Projects() {
                   unoptimized
                   src={project.image.src}
                   alt={project.image.alt}
-                  className="aspect-video size-full rounded-lg bg-accent object-cover"
+                  className="aspect-video size-full rounded-lg bg-foreground object-cover"
                   width={1440}
                   height={872}
+                  placeholder="blur"
+                  blurDataURL={project.image.src}
                 />
               </Link>
               <div className="rb-4 mb-4 flex w-full items-center justify-start gap-1.5">
@@ -92,7 +100,7 @@ export default function Projects() {
                   </Link>
                 </Button>
               </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>

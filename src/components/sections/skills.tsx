@@ -55,6 +55,7 @@ import {
 } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { GrMysql } from "react-icons/gr";
+import FadeIn from "@/components/fade-in";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -64,29 +65,33 @@ export default function Skills() {
   const SkillCard = ({
     category,
     skills,
+    delay,
   }: {
     category: string;
     skills: { icon: React.ReactNode; name: string }[];
+    delay: number;
   }) => {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>{category}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="grid grid-cols-2 gap-4 py-2">
-            {skills.map((skill, skillIndex) => (
-              <li
-                key={skillIndex}
-                className="inline-flex items-center gap-2 self-start"
-              >
-                {skill.icon}
-                <span className="text-sm">{skill.name}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+      <FadeIn delay={delay} direction="up">
+        <Card>
+          <CardHeader>
+            <CardTitle>{category}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="grid grid-cols-2 gap-4 py-2">
+              {skills.map((skill, skillIndex) => (
+                <li
+                  key={skillIndex}
+                  className="inline-flex items-center gap-2 self-start"
+                >
+                  {skill.icon}
+                  <span className="text-sm">{skill.name}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </FadeIn>
     );
   };
 
@@ -95,26 +100,28 @@ export default function Skills() {
       <div className="container mx-auto px-[5%]">
         <div className="grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:gap-x-20">
           <div className="static md:sticky md:top-[30%]">
-            <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
-              Skills
-            </h2>
-            <article className="prose prose-stone text-balance dark:prose-invert">
-              <p>
-                As a full-stack developer and software engineer, I blend
-                functionality with visually compelling design for a seamless
-                user experience while maximizing digital marketing potential to
-                drive business results.
-              </p>
-            </article>
+            <FadeIn delay={0.1} direction="none">
+              <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
+                Skills
+              </h2>
+              <article className="prose prose-stone text-balance dark:prose-invert">
+                <p>
+                  As a full-stack developer and software engineer, I blend
+                  functionality with visually compelling design for a seamless
+                  user experience while maximizing digital marketing potential
+                  to drive business results.
+                </p>
+              </article>
 
-            <ContactDialog>
-              <Button
-                variant="outline"
-                className="mt-6 flex w-fit items-center justify-start gap-x-2 md:mt-8"
-              >
-                Contact
-              </Button>
-            </ContactDialog>
+              <ContactDialog>
+                <Button
+                  variant="outline"
+                  className="mt-6 flex w-fit items-center justify-start gap-x-2 md:mt-8"
+                >
+                  Contact
+                </Button>
+              </ContactDialog>
+            </FadeIn>
           </div>
           <div className="grid grid-cols-1 gap-6">
             {[
@@ -268,6 +275,7 @@ export default function Skills() {
                 key={index}
                 category={category.title}
                 skills={category.skills}
+                delay={0.2 + index * 0.05} // Staggered delay for each card
               />
             ))}
           </div>

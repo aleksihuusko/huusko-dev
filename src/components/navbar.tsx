@@ -24,6 +24,7 @@ import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import ContactDialog from "@/components/contact-dialog";
+import FadeIn from "./fade-in";
 
 const links = {
   main: [
@@ -40,7 +41,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-background/50 backdrop-blur-2xl">
       <div className="container mx-auto px-[5%]">
         <div className="flex h-12 items-center justify-between md:h-16">
-          <div>
+          <FadeIn direction="right" delay={0}>
             <Link
               href="/"
               className="flex flex-col transition-colors duration-300 hover:text-muted-foreground"
@@ -49,36 +50,40 @@ export default function Navbar() {
                 Huusko<span className="text-muted-foreground">.dev</span>
               </span>
             </Link>
-          </div>
+          </FadeIn>
 
-          {/* Desktop menu */}
           <div className="hidden md:block">
             <NavigationMenu>
               <NavigationMenuList>
-                {links.main.map(({ href, label }) => (
-                  <NavigationMenuItem key={label}>
-                    <Link href={href} legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        {label}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
+                {links.main.map(({ href, label }, index) => (
+                  <FadeIn direction="none" delay={0.05 * index} key={label}>
+                    <NavigationMenuItem key={label}>
+                      <Link href={href} legacyBehavior passHref>
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle()}
+                        >
+                          {label}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                  </FadeIn>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
 
-          <div className="hidden items-center gap-x-2 md:flex">
+          <FadeIn
+            direction="left"
+            delay={0.1}
+            className="hidden items-center gap-x-2 md:flex"
+          >
             <ThemeToggle />
             <ContactDialog>
               <Button variant="outline">Contact</Button>
             </ContactDialog>
-          </div>
+          </FadeIn>
 
-          {/* Mobile menu */}
-          <div className="flex md:hidden">
+          <FadeIn direction="left" delay={0.1} className="flex md:hidden">
             <Sheet>
               <SheetTrigger>
                 <div className="flex flex-col gap-y-1 py-4 pl-4">
@@ -132,7 +137,7 @@ export default function Navbar() {
                 </SheetFooter>
               </SheetContent>
             </Sheet>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </nav>

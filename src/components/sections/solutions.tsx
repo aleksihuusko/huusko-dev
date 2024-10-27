@@ -1,6 +1,7 @@
 "use client";
 
 import { CodeIcon, Crosshair1Icon, FrameIcon } from "@radix-ui/react-icons";
+import FadeIn from "@/components/fade-in";
 
 export default function Solutions() {
   return (
@@ -8,25 +9,31 @@ export default function Solutions() {
       <div className="container mx-auto px-[5%]">
         <div className="rb-12 md:mb-18 mb-12 grid auto-cols-fr grid-cols-1 items-start gap-x-5 gap-y-5 md:grid-cols-2 md:gap-x-12 lg:mb-20 lg:gap-x-20 lg:gap-y-20">
           <div className="flex h-full flex-col">
-            <h2 className="scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
-              Solutions
-            </h2>
+            <FadeIn delay={0.2} direction="none">
+              <h2 className="scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
+                Solutions
+              </h2>
+            </FadeIn>
           </div>
           <article className="prose prose-stone dark:prose-invert">
-            <p>
-              Crafting modern, responsive websites and web applications
-              optimized for all devices and platforms, using cutting-edge
-              solutions free of outdated systems.
-            </p>
-            <p>
-              Transforming brands by designing websites, apps, social media
-              assets and identities. I deliver tailored, visually compelling,
-              results-driven solutions for web, mobile and digital marketing.
-            </p>
+            <FadeIn delay={0.3}>
+              <p>
+                Crafting modern, responsive websites and web applications
+                optimized for all devices and platforms, using cutting-edge
+                solutions free of outdated systems.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <p>
+                Transforming brands by designing websites, apps, social media
+                assets and identities. I deliver tailored, visually compelling,
+                results-driven solutions for web, mobile and digital marketing.
+              </p>
+            </FadeIn>
           </article>
         </div>
         <div className="grid auto-cols-fr grid-cols-1 items-start gap-x-12 gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-8 lg:gap-x-12 lg:gap-y-12">
-          <div className="w-full md:mt-[0%]">
+          <FadeIn className="w-full md:mt-[0%]" delay={0.2}>
             <CodeIcon className="mb-6 size-5 text-muted-foreground" />
             <h3 className="mb-3 scroll-m-20 text-2xl tracking-tight md:mb-4">
               Development
@@ -38,8 +45,9 @@ export default function Solutions() {
                 managers and end users.
               </p>
             </article>
-          </div>
-          <div className="w-full md:mt-[25%]">
+          </FadeIn>
+
+          <FadeIn className="w-full md:mt-[25%]" delay={0.3}>
             <FrameIcon className="mb-6 size-5 text-muted-foreground" />
             <h3 className="mb-3 scroll-m-20 text-2xl tracking-tight md:mb-4">
               Design
@@ -51,8 +59,9 @@ export default function Solutions() {
                 both user experience and visual excellence.
               </p>
             </article>
-          </div>
-          <div className="w-full md:mt-[50%]">
+          </FadeIn>
+
+          <FadeIn className="w-full md:mt-[50%]" delay={0.4}>
             <Crosshair1Icon className="mb-6 size-5 text-muted-foreground" />
             <h3 className="mb-3 scroll-m-20 text-2xl tracking-tight md:mb-4">
               Marketing
@@ -64,7 +73,7 @@ export default function Solutions() {
                 business&apos;s unique needs and goals.
               </p>
             </article>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>

@@ -37,11 +37,14 @@ export function Clock() {
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
       date,
     );
-    const finlandTime = new Date(formattedDate);
-    const utcOffset = finlandTime.getTimezoneOffset() / -60;
-    const isDST = utcOffset === 3;
 
-    return `${formattedDate} (UTC+${isDST ? "3" : "2"})`;
+    // Get the exact offset for Helsinki timezone
+    const helsinkiDate = new Date(
+      date.toLocaleString("en-US", { timeZone: "Europe/Helsinki" }),
+    );
+    const helsinkiOffset = -helsinkiDate.getTimezoneOffset() / 60;
+
+    return `${formattedDate} (UTC+${helsinkiOffset})`;
   };
 
   if (currentTime === null) {

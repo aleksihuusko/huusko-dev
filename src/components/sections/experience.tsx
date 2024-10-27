@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
+
 import { Badge } from "@/components/ui/badge";
+import FadeIn from "@/components/fade-in";
 
 const items = [
   {
@@ -51,22 +53,30 @@ const items = [
   },
 ];
 
-const ExperienceItem = ({ item }: { item: (typeof items)[0] }) => {
+const ExperienceItem = ({
+  item,
+  delay,
+}: {
+  item: (typeof items)[0];
+  delay: number;
+}) => {
   return (
-    <div className="flex flex-col items-start">
-      <Badge variant="outline" className="mb-5 text-muted-foreground">
-        {item.date}
-      </Badge>
-      <h3 className="!mb-2 scroll-m-20 text-balance text-2xl tracking-tight md:mb-4">
-        {item.title}
-      </h3>
-      <span className="mb-5 text-balance text-sm text-muted-foreground">
-        {item.subtitle}
-      </span>
-      <article className="prose prose-sm prose-stone dark:prose-invert">
-        {item.description}
-      </article>
-    </div>
+    <FadeIn delay={delay} direction="up">
+      <div className="flex flex-col items-start">
+        <Badge variant="outline" className="mb-5 text-muted-foreground">
+          {item.date}
+        </Badge>
+        <h3 className="!mb-2 scroll-m-20 text-balance text-2xl tracking-tight md:mb-4">
+          {item.title}
+        </h3>
+        <span className="mb-5 text-balance text-sm text-muted-foreground">
+          {item.subtitle}
+        </span>
+        <article className="prose prose-sm prose-stone dark:prose-invert">
+          {item.description}
+        </article>
+      </div>
+    </FadeIn>
   );
 };
 
@@ -75,20 +85,27 @@ export default function Experience() {
     <section id="experience" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto grid grid-cols-1 items-start justify-between gap-x-12 gap-y-12 px-[5%] md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-20">
         <div className="static md:sticky md:top-[30%]">
-          <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
-            Experience
-          </h2>
-          <article className="prose prose-stone text-balance dark:prose-invert">
-            <p>
-              Collaborated with a diverse range of companies and organizations,
-              from innovative startups to established corporations, delivering
-              tailored solutions that drive growth and digital transformation.
-            </p>
-          </article>
+          <FadeIn delay={0.2} direction="none">
+            <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
+              Experience
+            </h2>
+            <article className="prose prose-stone text-balance dark:prose-invert">
+              <p>
+                Collaborated with a diverse range of companies and
+                organizations, from innovative startups to established
+                corporations, delivering tailored solutions that drive growth
+                and digital transformation.
+              </p>
+            </article>
+          </FadeIn>
         </div>
         <div className="grid grid-cols-1 gap-12 py-2">
           {items.map((item, index) => (
-            <ExperienceItem key={index} item={item} />
+            <ExperienceItem
+              key={index}
+              item={item}
+              delay={0.3 + index * 0.1} // Staggered delay for each experience item
+            />
           ))}
         </div>
       </div>

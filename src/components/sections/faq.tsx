@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ContactDialog from "@/components/contact-dialog";
+import FadeIn from "@/components/fade-in";
 
 const questions = [
   {
@@ -45,40 +46,43 @@ export default function Faq() {
     <section id="faq" className="py-16 md:py-24 lg:py-28">
       <div className="container mx-auto grid grid-cols-1 items-start justify-between gap-x-12 gap-y-12 px-[5%] md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-20">
         <div>
-          <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
-            Frequently asked questions
-          </h2>
-          <article className="prose prose-stone text-balance dark:prose-invert">
-            <p className="text-balance">
-              These are the questions I get asked the most. Get in touch with me
-              if you need more answers.
-            </p>
-          </article>
+          <FadeIn delay={0.2} direction="none">
+            <h2 className="mb-5 scroll-m-20 border-b pb-2 text-3xl tracking-tight transition-colors first:mt-0">
+              Frequently asked questions
+            </h2>
+            <article className="prose prose-stone text-balance dark:prose-invert">
+              <p className="text-balance">
+                These are the questions I get asked the most. Get in touch with
+                me if you need more answers.
+              </p>
+            </article>
 
-          <ContactDialog>
-            <Button
-              variant="outline"
-              className="mt-6 flex w-fit items-center justify-start gap-x-2 md:mt-8"
-            >
-              Contact
-            </Button>
-          </ContactDialog>
+            <ContactDialog>
+              <Button
+                variant="outline"
+                className="mt-6 flex w-fit items-center justify-start gap-x-2 md:mt-8"
+              >
+                Contact
+              </Button>
+            </ContactDialog>
+          </FadeIn>
         </div>
 
         <div>
           <Accordion type="single" collapsible>
             {questions.map((question, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className={cn(
-                  "border-b",
-                  index === questions.length - 1 && "border-b-0",
-                )}
-              >
-                <AccordionTrigger>{question.question}</AccordionTrigger>
-                <AccordionContent>{question.answer}</AccordionContent>
-              </AccordionItem>
+              <FadeIn key={index} delay={0.3 + index * 0.1} direction="up">
+                <AccordionItem
+                  value={`item-${index}`}
+                  className={cn(
+                    "border-b",
+                    index === questions.length - 1 && "border-b-0",
+                  )}
+                >
+                  <AccordionTrigger>{question.question}</AccordionTrigger>
+                  <AccordionContent>{question.answer}</AccordionContent>
+                </AccordionItem>
+              </FadeIn>
             ))}
           </Accordion>
         </div>
