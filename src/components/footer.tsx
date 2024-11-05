@@ -129,7 +129,7 @@ export default function Footer() {
                 variant="outline"
                 className="flex w-fit items-center gap-x-2 text-xs text-muted-foreground"
               >
-                <div className="size-1.5 animate-pulse rounded-full bg-destructive" />
+                <div className="size-1.5 animate-pulse rounded-full bg-green-600 dark:bg-green-500" />
                 Available for work
               </Badge>
             </div>

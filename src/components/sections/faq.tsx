@@ -20,7 +20,7 @@ const questions = [
       "I specialize in developing modern, responsive websites and web applications, crafting intuitive user experiences, and designing visually compelling digital products. My expertise also includes digital marketing, where I deliver data-driven strategies that align with business goals for measurable growth.",
   },
   {
-    question: "What is your technical background",
+    question: "What is your technical background?",
     answer:
       "I hold a Master of Science in Technology, specializing in Software Engineering. My thesis focused on comparing the efficiency and scalability of JAMstack and LAMP-based WordPress architectures. I have extensive knowledge of software engineering, interaction design, and digital business strategies, allowing me to create solutions that are both functional and visually appealing.",
   },

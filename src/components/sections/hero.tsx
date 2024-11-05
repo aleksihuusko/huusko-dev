@@ -19,7 +19,7 @@ export default function Hero() {
                   variant="secondary"
                   className="mb-6 flex w-fit items-center gap-x-2 text-muted-foreground"
                 >
-                  <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-destructive" />
+                  <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-600 dark:bg-green-500" />
                   Available for work
                 </Badge>
               </div>

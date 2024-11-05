@@ -9,14 +9,14 @@ import { Toaster } from "@/components/ui/toaster";
 
 const overusedGrotesk = localFont({
   src: "./fonts/overused-grotesk.woff2",
-  variable: "--font-sans",
+  variable: "--font-overused-grotesk",
   weight: "100 900",
 });
 
 export const metadata: Metadata = {
   title: "Aleksi Huusko | A creative developer and web designer",
   description:
-    "Developer and designer from Helsinki, Finland. Crafting dynamic, innovative digital products and evolving user experiences driven by data insights.",
+    "Web developer and designer from Helsinki, Finland. Crafting dynamic, innovative digital products and evolving user experiences driven by data insights.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${overusedGrotesk.variable} scroll-smooth antialiased`}
+      className={`${overusedGrotesk.variable} scroll-smooth font-medium antialiased`}
       suppressHydrationWarning
     >
       <body>
